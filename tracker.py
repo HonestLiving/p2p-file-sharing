@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request, jsonify
 from collections import defaultdict
 import random
@@ -137,4 +139,6 @@ def request_chunk():
     return jsonify({"chunk_id": chunk_id, "node": request_id}), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    port = int(os.environ.get("PORT", 5000))  # Use Heroku's port or default to 5000
+    app.run(host='0.0.0.0', port=port)
+
